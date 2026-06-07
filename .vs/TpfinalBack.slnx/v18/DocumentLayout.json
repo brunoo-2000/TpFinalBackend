@@ -1,0 +1,139 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Usuario\\Documents\\GitHub\\TpFinalBackend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6740A84B-957B-A7E6-B29C-BEA77BA2425D}|TpfinalBack.csproj|c:\\users\\usuario\\documents\\github\\tpfinalbackend\\models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6740A84B-957B-A7E6-B29C-BEA77BA2425D}|TpfinalBack.csproj|solutionrelative:models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6740A84B-957B-A7E6-B29C-BEA77BA2425D}|TpfinalBack.csproj|c:\\users\\usuario\\documents\\github\\tpfinalbackend\\models\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6740A84B-957B-A7E6-B29C-BEA77BA2425D}|TpfinalBack.csproj|solutionrelative:models\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6740A84B-957B-A7E6-B29C-BEA77BA2425D}|TpfinalBack.csproj|c:\\users\\usuario\\documents\\github\\tpfinalbackend\\models\\pedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6740A84B-957B-A7E6-B29C-BEA77BA2425D}|TpfinalBack.csproj|solutionrelative:models\\pedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6740A84B-957B-A7E6-B29C-BEA77BA2425D}|TpfinalBack.csproj|c:\\users\\usuario\\documents\\github\\tpfinalbackend\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6740A84B-957B-A7E6-B29C-BEA77BA2425D}|TpfinalBack.csproj|solutionrelative:models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6740A84B-957B-A7E6-B29C-BEA77BA2425D}|TpfinalBack.csproj|c:\\users\\usuario\\documents\\github\\tpfinalbackend\\models\\direccion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6740A84B-957B-A7E6-B29C-BEA77BA2425D}|TpfinalBack.csproj|solutionrelative:models\\direccion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6740A84B-957B-A7E6-B29C-BEA77BA2425D}|TpfinalBack.csproj|c:\\users\\usuario\\documents\\github\\tpfinalbackend\\models\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6740A84B-957B-A7E6-B29C-BEA77BA2425D}|TpfinalBack.csproj|solutionrelative:models\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6740A84B-957B-A7E6-B29C-BEA77BA2425D}|TpfinalBack.csproj|c:\\users\\usuario\\documents\\github\\tpfinalbackend\\models\\detallepedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6740A84B-957B-A7E6-B29C-BEA77BA2425D}|TpfinalBack.csproj|solutionrelative:models\\detallepedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Usuario.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\GitHub\\TpFinalBackend\\Models\\Usuario.cs",
+              "RelativeDocumentMoniker": "Models\\Usuario.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\GitHub\\TpFinalBackend\\Models\\Usuario.cs",
+              "RelativeToolTip": "Models\\Usuario.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-07T19:33:49.408Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Producto.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\GitHub\\TpFinalBackend\\Models\\Producto.cs",
+              "RelativeDocumentMoniker": "Models\\Producto.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\GitHub\\TpFinalBackend\\Models\\Producto.cs",
+              "RelativeToolTip": "Models\\Producto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-07T19:33:48.944Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Pedido.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\GitHub\\TpFinalBackend\\Models\\Pedido.cs",
+              "RelativeDocumentMoniker": "Models\\Pedido.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\GitHub\\TpFinalBackend\\Models\\Pedido.cs",
+              "RelativeToolTip": "Models\\Pedido.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-07T19:33:48.429Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ErrorViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\GitHub\\TpFinalBackend\\Models\\ErrorViewModel.cs",
+              "RelativeDocumentMoniker": "Models\\ErrorViewModel.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\GitHub\\TpFinalBackend\\Models\\ErrorViewModel.cs",
+              "RelativeToolTip": "Models\\ErrorViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-07T19:33:47.841Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Direccion.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\GitHub\\TpFinalBackend\\Models\\Direccion.cs",
+              "RelativeDocumentMoniker": "Models\\Direccion.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\GitHub\\TpFinalBackend\\Models\\Direccion.cs",
+              "RelativeToolTip": "Models\\Direccion.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-07T19:33:47.217Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Cliente.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\GitHub\\TpFinalBackend\\Models\\Cliente.cs",
+              "RelativeDocumentMoniker": "Models\\Cliente.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\GitHub\\TpFinalBackend\\Models\\Cliente.cs",
+              "RelativeToolTip": "Models\\Cliente.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-07T19:33:46.368Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DetallePedido.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\GitHub\\TpFinalBackend\\Models\\DetallePedido.cs",
+              "RelativeDocumentMoniker": "Models\\DetallePedido.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\GitHub\\TpFinalBackend\\Models\\DetallePedido.cs",
+              "RelativeToolTip": "Models\\DetallePedido.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-07T19:33:44.375Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

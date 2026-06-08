@@ -1,12 +1,18 @@
-﻿namespace TpfinalBack.Models
+﻿using System.ComponentModel.DataAnnotations;
+namespace TpfinalBack.Models
 {
     public class Usuario
     {
+        [Key]
         public int Id { get; set; }
-        public string NombreUsuario { get; set; }
-        public string Password { get; set; }
-        public string Rol {  get; set; }
+        [Required]
+        public string Username { get; set; } = string.Empty;
+        [Required]
+        public string Password { get; set; } = string.Empty;
+        [Required]
+        public string Rol {  get; set; } = string.Empty;
 
-        public virtual ICollection<Pedido> Pedidos { get; set; }
+        public virtual ICollection<Pedido> Pedidos { get; set; } = new List<Pedido>();
+
     }
 }

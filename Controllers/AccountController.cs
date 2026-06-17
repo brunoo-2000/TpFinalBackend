@@ -32,14 +32,12 @@ namespace TpfinalBack.Controllers
             {
                 return View(model); 
             }
-            try
-            {
-                var usuarioValido = _context.Usuarios.FirstOrDefault(u => u.Username == model.Username && u.Password == model.Password);
-            }
-            catch (Exception ex) {
-                
-                    
-            }
+
+            
+            
+             var usuarioValido = _context.Usuarios.FirstOrDefault(u => u.Username == model.Username && u.Password == model.Password);
+            
+            
             
 
             if(usuarioValido == null)

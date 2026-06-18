@@ -8,7 +8,7 @@ namespace TpfinalBack.Models
         [Required]
         public string Username { get; set; } = string.Empty;
         [Required]
-        public string Password { get; set; } = string.Empty;
+        public string PasswordHash { get; set; } = string.Empty;
         [Required]
         public string Rol {  get; set; } = string.Empty;
         public virtual ICollection<Pedido> Pedidos { get; set; } = new List<Pedido>();

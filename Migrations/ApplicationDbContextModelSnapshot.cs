@@ -44,7 +44,7 @@ namespace TpfinalBack.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clientes");
+                    b.ToTable("Cliente");
                 });
 
             modelBuilder.Entity("TpfinalBack.Models.DetallePedido", b =>
@@ -76,7 +76,7 @@ namespace TpfinalBack.Migrations
 
                     b.HasIndex("ProductoId");
 
-                    b.ToTable("DetallePedidos");
+                    b.ToTable("DetallePedido");
                 });
 
             modelBuilder.Entity("TpfinalBack.Models.Direccion", b =>
@@ -89,24 +89,27 @@ namespace TpfinalBack.Migrations
 
                     b.Property<string>("Calle")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<string>("Ciudad")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("ClienteId")
                         .HasColumnType("int");
 
                     b.Property<string>("Numero")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ClienteId");
 
-                    b.ToTable("Direcciones");
+                    b.ToTable("Direccion");
                 });
 
             modelBuilder.Entity("TpfinalBack.Models.Pedido", b =>
@@ -138,7 +141,7 @@ namespace TpfinalBack.Migrations
 
                     b.HasIndex("UsuarioId");
 
-                    b.ToTable("Pedidos");
+                    b.ToTable("Pedido");
                 });
 
             modelBuilder.Entity("TpfinalBack.Models.Producto", b =>
@@ -161,7 +164,7 @@ namespace TpfinalBack.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Productos");
+                    b.ToTable("Producto");
                 });
 
             modelBuilder.Entity("TpfinalBack.Models.Usuario", b =>
@@ -172,7 +175,7 @@ namespace TpfinalBack.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Password")
+                    b.Property<string>("PasswordHash")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -186,7 +189,16 @@ namespace TpfinalBack.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Usuarios");
+                    b.ToTable("Usuario");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            PasswordHash = "AQAAAAIAAYagAAAAEIOK6i7zHIBdyAKNaZZhPvM+rccIN1F5d/C2Xql552mBbkoiEfopOi4g4zcFD4Qw2A==",
+                            Rol = "Admin",
+                            Username = "admin"
+                        });
                 });
 
             modelBuilder.Entity("TpfinalBack.Models.DetallePedido", b =>

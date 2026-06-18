@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using TpfinalBack.Data;
 using TpfinalBack.DTOs;
 using TpfinalBack.Models;
@@ -8,10 +9,12 @@ namespace TpfinalBack.Controllers
     public class AccountController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly PasswordHasher<Usuario> _passwordHasher;
 
         public AccountController(ApplicationDbContext context)
         {
             _context = context;
+            _passwordHasher = new PasswordHasher<Usuario>();
         }
 
         [HttpGet]
@@ -33,14 +36,17 @@ namespace TpfinalBack.Controllers
                 return View(model); 
             }
 
+            var usuarioValido = _context.Usuario.FirstOrDefault(u => u.Username == model.Username);
             
-            
-             var usuarioValido = _context.Usuarios.FirstOrDefault(u => u.Username == model.Username && u.Password == model.Password);
-            
-            
-            
-
             if(usuarioValido == null)
+            {
+                ModelState.AddModelError(string.Empty, "Usuario o contraseña incorrectos.");
+                return View(model);
+            }
+
+            var resultado = _passwordHasher.VerifyHashedPassword(usuarioValido, usuarioValido.PasswordHash, model.Password);
+
+            if(resultado == PasswordVerificationResult.Failed)
             {
                 ModelState.AddModelError(string.Empty, "Usuario o contraseña incorrectos. ");
                 return View(model);

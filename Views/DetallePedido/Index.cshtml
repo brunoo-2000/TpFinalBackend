@@ -1,0 +1,71 @@
+@model IEnumerable<TpfinalBack.Models.DetallePedido>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Cantidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ConstoUnitario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubTotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PedidoId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pedido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductoId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Producto)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.Cantidad)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.ConstoUnitario)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.SubTotal)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.PedidoId)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Pedido)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.ProductoId)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Producto)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

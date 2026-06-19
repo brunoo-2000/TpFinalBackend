@@ -48,7 +48,7 @@ namespace TpfinalBack.Controllers
 
             if(resultado == PasswordVerificationResult.Failed)
             {
-                ModelState.AddModelError(string.Empty, "Usuario o contraseña incorrectos. ");
+                ModelState.AddModelError(string.Empty, "Usuario o contraseña incorrectos.");
                 return View(model);
             }
 

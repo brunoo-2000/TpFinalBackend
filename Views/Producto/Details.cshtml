@@ -1,38 +1,18 @@
 @model TpfinalBack.Models.Producto
+@{ ViewData["Title"] = "Detalle Producto"; }
 
-@{
-    ViewData["Title"] = "Details";
-}
+<h1>@Model.Descripcion</h1>
+<hr />
 
-<h1>Details</h1>
-
-<div>
-    <h4>Producto</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CostoUnitario)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CostoUnitario)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.stock)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.stock)
-        </dd>
-    </dl>
+<div class="card" style="max-width: 400px;">
+    <div class="card-body">
+        <p class="mb-2"><strong>Descripción:</strong> @Model.Descripcion</p>
+        <p class="mb-2"><strong>Costo Unitario:</strong> $@Model.CostoUnitario.ToString("N2")</p>
+        <p class="mb-0"><strong>Stock:</strong> @Model.stock</p>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+
+<div class="mt-4">
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Editar</a>
+    <a asp-action="Index" class="btn btn-secondary ms-2">Volver</a>
 </div>

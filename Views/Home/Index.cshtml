@@ -1,6 +1,77 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@{
+    ViewData["Title"] = "Inicio";
 }
 
-<div class="text-center">
+@section Styles {
+    <style>
+        .hero-strip {
+            background: #111;
+            color: #fff;
+            padding: 64px 0 56px;
+            margin: -1rem -12px 0;
+        }
+        .hero-strip h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            letter-spacing: 8px;
+        }
+        .hero-strip p {
+            color: rgba(255,255,255,.55);
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+        .hero-divider {
+            width: 40px;
+            height: 3px;
+            background: #fff;
+            margin: 1.2rem auto 1.6rem;
+        }
+        .member-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            transition: border-color .2s;
+        }
+        .member-card:hover {
+            border-color: #111;
+        }
+        .member-initial {
+            width: 48px;
+            height: 48px;
+            background: #111;
+            border-radius: 50%;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: .95rem;
+            margin: 0 auto .8rem;
+        }
+    </style>
+}
+
+<div class="hero-strip text-center">
+    <h1>VIVUM</h1>
+    <div class="hero-divider"></div>
+    <p class="mb-4">Sistema de Gestión de Despacho de Mercadería</p>
+    <a asp-controller="Despacho" asp-action="Index" class="btn btn-light me-2 px-4">Despachos</a>
+    <a asp-controller="Pedido" asp-action="Index" class="btn btn-outline-light px-4">Ver Pedidos</a>
+</div>
+
+<div class="text-center mt-5 mb-3">
+    <p class="text-uppercase text-muted mb-4" style="letter-spacing: 3px; font-size: .7rem;">Integrantes del grupo</p>
+    <p class="text-muted small">Programación III BE — Trabajo Práctico Integrador</p>
+</div>
+
+<div class="row justify-content-center g-3 mb-5">
+    @foreach (var (nombre, inicial) in new[] { ("Bruno Piri", "BP"), ("Valentín Borio", "VB"), ("Agustín Beninca", "AB") })
+    {
+        <div class="col-md-2">
+            <div class="card member-card text-center py-4 px-2">
+                <div class="member-initial">@inicial</div>
+                <div class="fw-semibold" style="font-size: .9rem;">@nombre</div>
+                <small class="text-muted">Backend · ASP.NET Core</small>
+            </div>
+        </div>
+    }
 </div>

@@ -1,73 +1,63 @@
 @model TpfinalBack.Models.Pedido
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalle del Pedido";
 }
 
-<h1>Details</h1>
-
-<div>
-    <h4>Pedido</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.fechaDespacho)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.fechaDespacho)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MontoTotal)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MontoTotal)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Confirmado)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Confirmado)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ClienteId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ClienteId)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cliente)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cliente)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UsuarioId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UsuarioId)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Usuario)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Usuario)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Detalles)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Detalles)
-        </dd>
-    </dl>
+<div class="d-flex justify-content-between align-items-center mb-2">
+    <h1>Pedido #@Model.Id</h1>
+    <span class="badge bg-success fs-6">Confirmado</span>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<hr />
+
+<div class="row mb-4">
+    <div class="col-md-6">
+        <p class="mb-1"><strong>Cliente:</strong> @Model.Cliente?.Nombre</p>
+        <p class="mb-1"><strong>Usuario:</strong> @Model.Usuario?.Username</p>
+        <p class="mb-0"><strong>Fecha:</strong> @Model.fechaDespacho.ToString("dd/MM/yyyy HH:mm")</p>
+    </div>
+</div>
+
+<table class="table table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Descripción</th>
+            <th>Cantidad</th>
+            <th>Costo Unitario</th>
+            <th>Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Detalles == null || !Model.Detalles.Any())
+        {
+            <tr>
+                <td colspan="5" class="text-center text-muted">Sin productos</td>
+            </tr>
+        }
+        else
+        {
+            @foreach (var detalle in Model.Detalles)
+            {
+                <tr>
+                    <td>@detalle.ProductoId</td>
+                    <td>@detalle.Producto?.Descripcion</td>
+                    <td>@detalle.Cantidad</td>
+                    <td>$@detalle.CostoUnitario.ToString("N2")</td>
+                    <td>$@detalle.SubTotal.ToString("N2")</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<div class="card mt-3">
+    <div class="card-body">
+        <p class="mb-1"><strong>Total de productos:</strong> @(Model.Detalles?.Sum(d => d.Cantidad) ?? 0)</p>
+        <p class="mb-0"><strong>Monto total:</strong> $@Model.MontoTotal.ToString("N2")</p>
+    </div>
+</div>
+
+<div class="mt-4">
+    <a asp-action="Index" class="btn btn-secondary">Volver a Pedidos</a>
 </div>

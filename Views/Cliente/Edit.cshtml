@@ -1,52 +1,95 @@
 @model TpfinalBack.Models.Cliente
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar Cliente";
 }
 
-<h1>Edit</h1>
-
-<h4>Cliente</h4>
+<h1>Editar Cliente</h1>
 <hr />
+
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Nombre" class="control-label"></label>
+
+            <h5 class="mt-2 mb-3">Datos del cliente</h5>
+
+            <div class="form-group mb-3">
+                <label class="control-label">Nombre</label>
                 <input asp-for="Nombre" class="form-control" />
                 <span asp-validation-for="Nombre" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Cuit" class="control-label"></label>
+
+            <div class="form-group mb-3">
+                <label class="control-label">CUIT</label>
                 <input asp-for="Cuit" class="form-control" />
                 <span asp-validation-for="Cuit" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Telefono" class="control-label"></label>
+
+            <div class="form-group mb-3">
+                <label class="control-label">Teléfono</label>
                 <input asp-for="Telefono" class="form-control" />
                 <span asp-validation-for="Telefono" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Direcciones" class="control-label"></label>
-                <input asp-for="Direcciones" class="form-control" />
-                <span asp-validation-for="Direcciones" class="text-danger"></span>
+
+            @if (Model.Direcciones != null && Model.Direcciones.Any())
+            {
+                <h5 class="mt-4 mb-3">Direcciones registradas</h5>
+                <table class="table table-sm table-bordered mb-3">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Calle</th>
+                            <th>Número</th>
+                            <th>Ciudad</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var dir in Model.Direcciones)
+                        {
+                            <tr>
+                                <td>@dir.Calle</td>
+                                <td>@dir.Numero</td>
+                                <td>@dir.Ciudad</td>
+                                <td>
+                                    <form asp-action="EliminarDireccion" method="post" style="display:inline">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@dir.Id" />
+                                        <input type="hidden" name="clienteId" value="@Model.Id" />
+                                        <button type="submit" class="btn btn-outline-danger btn-sm"
+                                                onclick="return confirm('¿Eliminar esta dirección?')">Eliminar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+
+            <h5 class="mt-4 mb-3">Agregar nueva dirección (opcional)</h5>
+
+            <div class="form-group mb-3">
+                <label for="Calle" class="control-label">Calle</label>
+                <input type="text" name="Calle" id="Calle" class="form-control" maxlength="150" />
             </div>
-            <div class="form-group">
-                <label asp-for="Pedidos" class="control-label"></label>
-                <input asp-for="Pedidos" class="form-control" />
-                <span asp-validation-for="Pedidos" class="text-danger"></span>
+
+            <div class="form-group mb-3">
+                <label for="Numero" class="control-label">Número</label>
+                <input type="text" name="Numero" id="Numero" class="form-control" maxlength="10" />
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+
+            <div class="form-group mb-3">
+                <label for="Ciudad" class="control-label">Ciudad</label>
+                <input type="text" name="Ciudad" id="Ciudad" class="form-control" maxlength="100" />
+            </div>
+
+            <div class="form-group mt-4">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary ms-2">Cancelar</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

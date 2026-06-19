@@ -3,7 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TpfinalBack.Models;
 using TpfinalBack.Data;
+using TpfinalBack.Filters;
 
+[SessionAuthorize]
+[Route("Direcciones/{action=Index}/{id?}")]
 public class DireccionController : Controller
 {
     private readonly ApplicationDbContext _context;
@@ -16,7 +19,7 @@ public class DireccionController : Controller
     // GET: DIRECCIONS
     public async Task<IActionResult> Index()    
     {
-        return View(await _context.Direccion.ToListAsync());
+        return View(await _context.Direccion.Include(d => d.Cliente).ToListAsync());
     }
 
     // GET: DIRECCIONS/Details/5

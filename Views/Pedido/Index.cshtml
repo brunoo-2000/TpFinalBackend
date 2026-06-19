@@ -1,77 +1,86 @@
 @model IEnumerable<TpfinalBack.Models.Pedido>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Pedidos";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.fechaDespacho)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MontoTotal)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Confirmado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ClienteId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cliente)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UsuarioId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Usuario)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Detalles)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(model => item.fechaDespacho)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.MontoTotal)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Confirmado)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.ClienteId)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Cliente)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.UsuarioId)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Usuario)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Detalles)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+@section Styles {
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" rel="stylesheet" />
 }
-    </tbody>
-</table>
+
+<h1>Pedidos</h1>
+<hr />
+
+<form method="get" class="row g-2 mb-4">
+    <div class="col-md-4">
+        <select name="busqueda" id="selectUsuario" class="form-select">
+            <option value="">-- Todos los usuarios --</option>
+            @foreach (var u in (List<string>)ViewBag.Usuarios)
+            {
+                <option value="@u" selected="@(ViewBag.Busqueda == u ? "selected" : null)">@u</option>
+            }
+        </select>
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Buscar</button>
+        @if (!string.IsNullOrEmpty(ViewBag.Busqueda as string))
+        {
+            <a asp-action="Index" class="btn btn-secondary ms-2">Limpiar</a>
+        }
+    </div>
+</form>
+
+@if (!Model.Any())
+{
+    @if (!string.IsNullOrEmpty(ViewBag.Busqueda as string))
+    {
+        <div class="alert alert-info">El usuario <strong>@ViewBag.Busqueda</strong> no tiene pedidos confirmados.</div>
+    }
+    else
+    {
+        <div class="alert alert-info">No hay pedidos confirmados.</div>
+    }
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>Fecha</th>
+                <th>Cliente</th>
+                <th>Usuario</th>
+                <th>Monto Total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var pedido in Model)
+            {
+                <tr>
+                    <td>@pedido.Id</td>
+                    <td>@pedido.fechaDespacho.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td>@pedido.Cliente?.Nombre</td>
+                    <td>@pedido.Usuario?.Username</td>
+                    <td>$@pedido.MontoTotal.ToString("N2")</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@pedido.Id" class="btn btn-sm btn-outline-primary">Ver detalle</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $('#selectUsuario').select2({
+            theme: 'bootstrap-5',
+            placeholder: 'Buscar usuario...',
+            allowClear: true,
+            width: '100%'
+        });
+    </script>
+}

@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TpfinalBack.Models;
 using TpfinalBack.Data;
+using TpfinalBack.Filters;
 
+[SessionAuthorize]
 public class DetallePedidoController : Controller
 {
     private readonly ApplicationDbContext _context;
@@ -48,7 +50,7 @@ public class DetallePedidoController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,Cantidad,ConstoUnitario,SubTotal,PedidoId,Pedido,ProductoId,Producto")] DetallePedido detallepedido)
+    public async Task<IActionResult> Create([Bind("Id,Cantidad,CostoUnitario,SubTotal,PedidoId,Pedido,ProductoId,Producto")] DetallePedido detallepedido)
     {
         if (ModelState.IsValid)
         {
@@ -80,7 +82,7 @@ public class DetallePedidoController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int? id, [Bind("Id,Cantidad,ConstoUnitario,SubTotal,PedidoId,Pedido,ProductoId,Producto")] DetallePedido detallepedido)
+    public async Task<IActionResult> Edit(int? id, [Bind("Id,Cantidad,CostoUnitario,SubTotal,PedidoId,Pedido,ProductoId,Producto")] DetallePedido detallepedido)
     {
         if (id != detallepedido.Id)
         {

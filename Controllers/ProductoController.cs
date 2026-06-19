@@ -6,6 +6,7 @@ using TpfinalBack.Data;
 using TpfinalBack.Filters;
 
 [SessionAuthorize]
+[Route("Productos/{action=Index}/{id?}")]
 public class ProductoController : Controller
 {
     private readonly ApplicationDbContext _context;
@@ -115,18 +116,12 @@ public class ProductoController : Controller
     // GET: PRODUCTOS/Delete/5
     public async Task<IActionResult> Delete(int? id)
     {
-        if (id == null)
-        {
-            return NotFound();
-        }
+        if (id == null) return NotFound();
 
-        var producto = await _context.Producto
-            .FirstOrDefaultAsync(m => m.Id == id);
-        if (producto == null)
-        {
-            return NotFound();
-        }
+        var producto = await _context.Producto.FirstOrDefaultAsync(m => m.Id == id);
+        if (producto == null) return NotFound();
 
+        ViewBag.TieneDetalles = await _context.DetallePedido.AnyAsync(d => d.ProductoId == id);
         return View(producto);
     }
 
@@ -135,13 +130,20 @@ public class ProductoController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int? id)
     {
-        var producto = await _context.Producto.FindAsync(id);
-        if (producto != null)
+        if (await _context.DetallePedido.AnyAsync(d => d.ProductoId == id))
         {
-            _context.Producto.Remove(producto);
+            var producto = await _context.Producto.FindAsync(id);
+            ViewBag.TieneDetalles = true;
+            return View(producto);
         }
 
-        await _context.SaveChangesAsync();
+        var productoAEliminar = await _context.Producto.FindAsync(id);
+        if (productoAEliminar != null)
+        {
+            _context.Producto.Remove(productoAEliminar);
+            await _context.SaveChangesAsync();
+        }
+
         return RedirectToAction(nameof(Index));
     }
 

@@ -1,12 +1,17 @@
 
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TpfinalBack.Models;
 using TpfinalBack.Data;
+using TpfinalBack.Filters;
 
+[AdminAuthorize]
+[Route("Usuarios/{action=Index}/{id?}")]
 public class UsuarioController : Controller
 {
     private readonly ApplicationDbContext _context;
+    private readonly PasswordHasher<Usuario> _hasher = new();
 
     public UsuarioController(ApplicationDbContext context)
     {
@@ -48,10 +53,12 @@ public class UsuarioController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,Username,PasswordHash,Rol,Pedidos")] Usuario usuario)
+    public async Task<IActionResult> Create([Bind("Id,Username,Rol")] Usuario usuario, string Password)
     {
+        ModelState.Remove("PasswordHash");
         if (ModelState.IsValid)
         {
+            usuario.PasswordHash = _hasher.HashPassword(usuario, Password);
             _context.Add(usuario);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -80,30 +87,29 @@ public class UsuarioController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int? id, [Bind("Id,Username,PasswordHash,Rol,Pedidos")] Usuario usuario)
+    public async Task<IActionResult> Edit(int? id, [Bind("Id,Username,Rol")] Usuario usuario, string? Password)
     {
-        if (id != usuario.Id)
-        {
-            return NotFound();
-        }
+        if (id != usuario.Id) return NotFound();
 
+        ModelState.Remove("PasswordHash");
         if (ModelState.IsValid)
         {
             try
             {
-                _context.Update(usuario);
+                var existente = await _context.Usuario.FindAsync(id);
+                if (existente == null) return NotFound();
+
+                existente.Username = usuario.Username;
+                existente.Rol = usuario.Rol;
+                if (!string.IsNullOrWhiteSpace(Password))
+                    existente.PasswordHash = _hasher.HashPassword(existente, Password);
+
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UsuarioExists(usuario.Id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                if (!UsuarioExists(usuario.Id)) return NotFound();
+                else throw;
             }
             return RedirectToAction(nameof(Index));
         }

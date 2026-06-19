@@ -1,59 +1,51 @@
 @model IEnumerable<TpfinalBack.Models.Cliente>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Clientes";
 }
 
-<h1>Clientes</h1>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Clientes</h1>
+    <a asp-action="Create" class="btn btn-primary">+ Nuevo Cliente</a>
+</div>
+<hr />
 
-<p>
-    <a asp-action="Create">Crear</a>
-</p>
-<table class="table">
-    <thead>
+<table class="table table-bordered table-hover">
+    <thead class="table-dark">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cuit)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Telefono)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Direcciones)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Pedidos)
-            </th>
+            <th>Nombre</th>
+            <th>CUIT</th>
+            <th>Teléfono</th>
+            <th>Direcciones</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(model => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Cuit)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Telefono)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Direcciones)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Pedidos)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Nombre</td>
+                <td>@item.Cuit</td>
+                <td>@item.Telefono</td>
+                <td>
+                    @{
+                        var cant = item.Direcciones?.Count ?? 0;
+                    }
+                    @if (cant == 0)
+                    {
+                        <span class="text-muted">Sin direcciones</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">@cant</span>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Detalle</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

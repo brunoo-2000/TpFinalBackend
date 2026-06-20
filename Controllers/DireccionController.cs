@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using TpfinalBack.Models;
 using TpfinalBack.Data;
 using TpfinalBack.Filters;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 [SessionAuthorize]
 [Route("Direcciones/{action=Index}/{id?}")]
@@ -41,23 +42,34 @@ public class DireccionController : Controller
     }
 
     // GET: DIRECCIONS/Create
-    public IActionResult Create()
+    public IActionResult Create(int? clienteId)
     {
+        ViewBag.Clientes = new SelectList(_context.Cliente.OrderBy(c => c.Nombre), "Id", "Nombre");
+        var direccion = new Direccion();
+        if(clienteId.HasValue)
+        {
+            direccion.ClienteId = clienteId.Value;
+        }
         return View();
     }
 
-    // POST: DIRECCIONS/Create
-    // To protect from overposting attacks, enable the specific properties you want to bind to.
-    // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+    
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create([Bind("Id,Calle,Numero,Ciudad,ClienteId,Cliente")] Direccion direccion)
     {
         if (ModelState.IsValid)
         {
-            _context.Add(direccion);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                _context.Add(direccion);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            catch(Exception ex)
+            {
+                ModelState.AddModelError("", "Error al guardar la dirección.");
+            }
         }
         return View(direccion);
     }

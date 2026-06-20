@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
 
 namespace TpfinalBack.Models
 {
@@ -14,8 +15,9 @@ namespace TpfinalBack.Models
         [Required]
         [MaxLength(100)]
         public string Ciudad { get; set; }
-
+        [Required]
         public int ClienteId { get; set; }
-        public virtual Cliente Cliente { get; set; }
+        [ValidateNever]
+        public virtual Cliente? Cliente { get; set; }
     }
 }

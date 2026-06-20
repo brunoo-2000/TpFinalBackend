@@ -32,16 +32,13 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="ClienteId" class="control-label"></label>
-                <input asp-for="ClienteId" class="form-control" />
+                <label asp-for="Cliente" class="control-label"></label>
+                <select asp-for="ClienteId" class="form-control" asp-items="ViewBag.Clientes">
+                    <option value="">-- Seleccione un cliente --</option>
+                </select>
                 <span asp-validation-for="ClienteId" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
-                <label asp-for="Cliente" class="control-label"></label>
-                <input asp-for="Cliente" class="form-control" />
-                <span asp-validation-for="Cliente" class="text-danger"></span>
-            </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

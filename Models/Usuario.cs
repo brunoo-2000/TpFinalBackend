@@ -17,6 +17,9 @@ namespace TpfinalBack.Models
         [Required(ErrorMessage = "El rol es obligatorio.")]
         public string Rol { get; set; } = string.Empty;
 
+        [Required(ErrorMessage = "El nombre es obligatorio.")]
+        public string NombrePila { get; set; } = string.Empty;
+
         public virtual ICollection<Pedido> Pedidos { get; set; } = new List<Pedido>();
     }
 }

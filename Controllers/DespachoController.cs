@@ -13,7 +13,7 @@ public class DespachoController : Controller
 
     public DespachoController(ApplicationDbContext context)
     {
-        _context = context; 
+        _context = context; //base de datos
     }
 
     // GET: Despacho/Index

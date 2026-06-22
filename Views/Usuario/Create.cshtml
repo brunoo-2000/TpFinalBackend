@@ -31,10 +31,18 @@
                 </select>
             </div>
 
+            <div class="form-group">
+                <label asp-for="NombrePila" class="control-label"></label>
+                <input asp-for="NombrePila" class="form-control" />
+                <span asp-validation-for="NombrePila" class="text-danger"></span>
+            </div>
+
             <div class="form-group mt-4">
                 <input type="submit" value="Crear" class="btn btn-primary" />
                 <a asp-action="Index" class="btn btn-secondary ms-2">Cancelar</a>
             </div>
+
+            
         </form>
     </div>
 </div>

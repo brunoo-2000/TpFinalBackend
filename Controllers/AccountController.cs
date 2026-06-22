@@ -55,6 +55,8 @@ namespace TpfinalBack.Controllers
             HttpContext.Session.SetString("UsuarioId", usuarioValido.Id.ToString());
             HttpContext.Session.SetString("Username", usuarioValido.Username);
             HttpContext.Session.SetString("Rol", usuarioValido.Rol);
+            HttpContext.Session.SetString("NombrePila", usuarioValido.NombrePila);
+
 
             return RedirectToAction("Index", "Home");
 

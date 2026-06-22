@@ -54,6 +54,8 @@ public class DireccionController : Controller
     }
 
     
+
+
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create([Bind("Id,Calle,Numero,Ciudad,ClienteId,Cliente")] Direccion direccion)
@@ -77,6 +79,7 @@ public class DireccionController : Controller
     // GET: DIRECCIONS/Edit/5
     public async Task<IActionResult> Edit(int? id)
     {
+
         if (id == null)
         {
             return NotFound();
@@ -87,6 +90,7 @@ public class DireccionController : Controller
         {
             return NotFound();
         }
+        ViewBag.Clientes = new SelectList(_context.Cliente.OrderBy(c => c.Nombre), "Id", "Nombre", direccion.ClienteId);
         return View(direccion);
     }
 

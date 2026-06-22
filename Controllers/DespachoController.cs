@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 using TpfinalBack.Data;
 using TpfinalBack.Filters;
 using TpfinalBack.Models;
@@ -14,7 +13,7 @@ public class DespachoController : Controller
 
     public DespachoController(ApplicationDbContext context)
     {
-        _context = context;
+        _context = context; 
     }
 
     // GET: Despacho/Index
@@ -86,7 +85,7 @@ public class DespachoController : Controller
             .Include(p => p.Cliente)
             .Include(p => p.Usuario)
             .Include(p => p.Detalles)
-                .ThenInclude(d => d.Producto)
+            .ThenInclude(d => d.Producto)
             .FirstOrDefaultAsync(p => p.Id == id);
 
         if (pedido == null) return NotFound();
@@ -109,7 +108,7 @@ public class DespachoController : Controller
     public async Task<IActionResult> AgregarProducto(int pedidoId, int productoId, int cantidad)
     {
         var pedido = await _context.Pedido.Include(p => p.Detalles).FirstOrDefaultAsync(p => p.Id == pedidoId);
-        if (pedido == null) return NotFound();
+        if (pedido == null) return NotFound();  
         if (pedido.Confirmado) return RedirectToAction(nameof(Editar), new { id = pedidoId });
 
         var producto = await _context.Producto.FindAsync(productoId);

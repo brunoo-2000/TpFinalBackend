@@ -33,46 +33,45 @@
                 <span asp-validation-for="Telefono" class="text-danger"></span>
             </div>
 
-            @if (Model.Direcciones != null && Model.Direcciones.Any())
-            {
-                <h5 class="mt-4 mb-3">Direcciones registradas</h5>
-                <table class="table table-sm table-bordered mb-3">
-                    <thead class="table-light">
-                        <tr>
-                            <th>Calle</th>
-                            <th>Número</th>
-                            <th>Ciudad</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var dir in Model.Direcciones)
-                        {
-                            <tr>
-                                <td>@dir.Calle</td>
-                                <td>@dir.Numero</td>
-                                <td>@dir.Ciudad</td>
-                                <td>
-                                    <form asp-action="EliminarDireccion" method="post" style="display:inline">
-                                        @Html.AntiForgeryToken()
-                                        <input type="hidden" name="id" value="@dir.Id" />
-                                        <input type="hidden" name="clienteId" value="@Model.Id" />
-                                        <button type="submit" class="btn btn-outline-danger btn-sm"
-                                                onclick="return confirm('¿Eliminar esta dirección?')">Eliminar</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            }
-
-
             <div class="form-group mt-4">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
                 <a asp-action="Index" class="btn btn-secondary ms-2">Cancelar</a>
             </div>
         </form>
+
+        @if (Model.Direcciones != null && Model.Direcciones.Any())
+        {
+            <h5 class="mt-4 mb-3">Direcciones registradas</h5>
+            <table class="table table-sm table-bordered mb-3">
+                <thead class="table-light">
+                    <tr>
+                        <th>Calle</th>
+                        <th>Número</th>
+                        <th>Ciudad</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var dir in Model.Direcciones)
+                    {
+                        <tr>
+                            <td>@dir.Calle</td>
+                            <td>@dir.Numero</td>
+                            <td>@dir.Ciudad</td>
+                            <td>
+                                <form asp-action="EliminarDireccion" method="post" style="display:inline">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@dir.Id" />
+                                    <input type="hidden" name="clienteId" value="@Model.Id" />
+                                    <button type="submit" class="btn btn-outline-danger btn-sm"
+                                            onclick="return confirm('¿Eliminar esta dirección?')">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
     </div>
 </div>
 

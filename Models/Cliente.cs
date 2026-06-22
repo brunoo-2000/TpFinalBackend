@@ -13,6 +13,7 @@ namespace TpfinalBack.Models
 
         [Required(ErrorMessage = "El CUIT es obligatorio.")]
         [MaxLength(13, ErrorMessage = "El CUIT no puede superar los 13 caracteres.")]
+        [RegularExpression(@"^\d{2}-\d{8}-\d{1}$", ErrorMessage = "El CUIT debe tener el formato 20-12345678-9.")]
         public string Cuit { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "El teléfono es obligatorio.")]

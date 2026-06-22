@@ -3,8 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - TpfinalBack</title>
+    <title>@ViewData["Title"] - Vivum</title>
     <script type="importmap"></script>
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico"/>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/TpfinalBack.styles.css" asp-append-version="true" />
@@ -50,7 +51,7 @@
                     {
                         <ul class="navbar-nav ms-auto align-items-center">
                             <li class="nav-item">
-                                <span class="nav-link text-muted pe-0">@Context.Session.GetString("Username")</span>
+                                <span class="nav-link text-muted pe-0">@Context.Session.GetString("NombrePila")</span>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-danger" asp-controller="Account" asp-action="Logout">Cerrar sesión</a>

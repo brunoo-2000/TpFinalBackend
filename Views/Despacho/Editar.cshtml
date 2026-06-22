@@ -106,7 +106,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-6">
-                <p class="mb-1"><strong>Usuario:</strong> @Model.Usuario?.Username</p>
+                <p class="mb-1"><strong>Usuario:</strong> @Model.Usuario?.NombrePila</p>
                 <p class="mb-1"><strong>Total de productos:</strong> @(Model.Detalles?.Sum(d => d.Cantidad) ?? 0)</p>
                 <p class="mb-0"><strong>Monto total:</strong> $@((Model.Detalles?.Sum(d => d.SubTotal) ?? 0).ToString("N2"))</p>
             </div>

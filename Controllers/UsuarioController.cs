@@ -53,7 +53,7 @@ public class UsuarioController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,Username,Rol")] Usuario usuario, string Password)
+    public async Task<IActionResult> Create([Bind("Id,Username,Rol,NombrePila")] Usuario usuario, string Password)
     {
         ModelState.Remove("PasswordHash");
         if (ModelState.IsValid)
@@ -87,7 +87,7 @@ public class UsuarioController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int? id, [Bind("Id,Username,Rol")] Usuario usuario, string? Password)
+    public async Task<IActionResult> Edit(int? id, [Bind("Id,Username,Rol,NombrePila")] Usuario usuario, string? Password)
     {
         if (id != usuario.Id) return NotFound();
 
